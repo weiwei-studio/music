@@ -1,0 +1,61 @@
+<style type="text/css">
+		
+		#phone{
+			width: 420px;
+			height: 700px;
+			background: url(img/1.jpg);
+			background-size: contain;
+			margin: 100px auto;;
+		}
+		.title{
+			width: 420px;
+			height: 30px;
+			
+			color: #fff;
+			text-align:  center;
+			font-size: 20px;
+			font-weight: bold; 
+			
+		}
+		.singer{
+			width: 420px;
+			height: 20px;
+			color: #fff;
+			text-align:  center;
+		}
+		.play{
+			width: 190px;
+			height:190px;
+			background: url(img/YQH.jpg);
+			background-size: contain;
+			border-radius:50%; 
+			
+			margin: 20px auto;
+		}
+		.rotate{
+			animation: rot 10s linear infinite;
+		}
+		@keyframes rot{
+			from{
+				transform: rotate(0deg) ;
+			}
+			to{
+				transform: rotate(360deg);
+			}
+		}
+		.lrc{
+			width: 300px;
+			height: 420px;
+			margin: auto;
+			color: #ccc;
+			font-size: 12px;
+			line-height: 20px;
+			text-align: center;
+			overflow: hidden;
+		}
+		#content{
+			position: relative;
+			top:0;
+		}
+	
+	</style>	

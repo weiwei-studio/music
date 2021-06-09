@@ -1,0 +1,215 @@
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		
+	<style type="text/css">
+	body,html{
+		width: 100%;
+		height: 100%;
+	}
+		body{
+			background: url(img/cyx4.jpg) no-repeat center;
+			background-size: cover;
+			overflow: hidden;
+		}
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		
+		#phone{
+			width: 420px;
+			height: 700px;
+			background-size: contain;
+			margin: 100px auto;
+		}
+		.title{
+			width: 420px;
+			height: 30px;
+			
+			color: black;
+			
+			text-align:  center;
+			font-size: 20px;
+			font-weight: bold; 
+			
+		}
+		.singer{
+			width: 420px;
+			height: 20px;
+			
+			color: black;
+			text-align:  center;
+		}
+		.play{
+			width: 190px;
+			height:190px;
+			background: url(img/cyx2.jpg);
+			background-size: contain;
+			border-radius:50%; 
+			
+			margin: 20px auto;
+		}
+		.rotate{
+			animation: rot 10s linear infinite;
+		}
+		@keyframes rot{
+			from{
+				transform: rotate(0deg) ;
+			}
+			to{
+				transform: rotate(360deg);
+			}
+		}
+		.lrc{
+			width: 400px;
+			height: 540px;
+			margin: auto;
+			color: #ccc;
+			font-size: 24px;
+			line-height: 42px;
+			text-align: center;
+			overflow: hidden;
+		}
+		#content{
+			position: relative;
+			top:0;
+		}
+	
+	</style>	
+	</head>
+	
+	
+	<body>
+		<div id="phone">
+			<div class="title">梦想天空分外蓝   <a href="index.html" style="color: black;">HOME</a></div>
+			<div class="singer">陈奕迅</div>
+			
+			<div class="play rotate" id="play"></div>
+			<div class="lrc">
+				<div id="content"></div>
+			</div>
+		</div>
+		<audio src="music/陈奕迅 - 梦想天空分外蓝.mp3" id="mymusic" </audio>
+		<textarea id="text" style="display:none">
+		[00:07.40]一天天的生活
+		[00:09.96]一边怀念 一边体验
+		[00:13.95]刚刚说了再见 又再见
+		[00:20.93]一段段的故事
+		[00:23.54]一边回顾 一边向前
+		[00:27.52]别人的情节总有我的画面
+		[00:32.76]只要有心就能看见
+		[00:35.93]从白云看到 不变蓝天
+		[00:39.42]从风雨寻回 梦的起点
+		[00:42.82]海阔天空的颜色
+		[00:44.51]就像梦想那么耀眼
+		[00:47.51]用心就能看见
+		[00:49.78]从陌生的脸 看到明天
+		[00:53.11]从熟悉经典 翻出新篇
+		[00:56.50]过眼的不只云烟
+		[00:58.38]有梦就有蓝天
+		[01:00.50]相信就能看见
+		[01:05.60]美梦是个气球
+		[01:08.23]签在手上 向往蓝天
+		[01:11.97]不管高低不曾远离 我视线
+		[01:19.25]生命是个舞台
+		[01:21.93]不用排练 尽情表演
+		[01:26.09]感动过的片段百看不厌
+		[01:31.28]只要有心就能看见
+		[01:34.38]从白云看到 不变蓝天
+		[01:37.73]从风雨寻回 梦的起点
+		[01:41.08]海阔天空的颜色
+		[01:42.73]就像梦想那么耀眼
+		[01:46.01]用心就能看见
+		[01:47.96]从陌生的脸 看到明天
+		[01:51.27]从熟悉经典 翻出新篇
+		[01:54.73]过眼的不只云烟
+		[01:56.51]相信梦想就能看见
+		[01:59.47]有太多一面之缘 值得被留恋
+		[02:03.30]总有感动的事 等待被发现
+		[02:06.73]梦想天空分外蓝 今夕何年
+		[02:10.03]Oh 看不厌
+		[02:13.29]用心就能看见
+		[02:15.56]从白云看到 不变蓝天
+		[02:19.00]从风雨寻回 梦的起点
+		[02:22.22]海阔天空的颜色
+		[02:24.23]就像梦想那么耀眼
+		[02:27.02]用心就能看见
+		[02:29.25]从陌生的脸 看到明天
+		[02:32.58]从熟悉经典 翻出新篇
+		[02:35.91]过眼的不只云烟
+		[02:37.71]有梦就有蓝天
+		[02:39.93]相信就能看见
+		[02:45.66]
+		[02:48.65]美梦是个气球
+		[02:51.13]签在手上 向往蓝天
+		[02:54.96]不管高低不曾远离 我视线
+		[03:01.92]梦想是个诺言
+		[03:04.75]记在心上 写在面前
+		[03:08.81]因为相信 所以我看得见
+		</textarea>
+		<script type="text/javascript">
+		var oPlay = document.getElementById("play");
+		var myMusic = document.getElementById("mymusic");
+		var mark = true;
+		oPlay.onclick = function(){
+			if (mark){
+				myMusic.play();
+				mark = false;
+				this.className = "play rotate";
+			}else{
+				myMusic.pause();
+				mark = true;
+				this.className = "play";
+			}
+		}
+		var html = '';
+		var oCon = document.getElementById("content");
+		var text = document.getElementById("text").value;
+		var arr = text.split("[");
+		for (var i=0;i<arr.length ;i++)
+		{
+			
+			var lrc =arr[i].split("]");
+			var times =lrc[0].split(".");
+			var time =times[0].split(":");
+			var cut = time[0]*60+ time[1]*1;
+			if (lrc[1])
+			{
+				html +="<p id="+cut+">"+lrc[1]+"</p>";
+			}
+		}
+		oCon.innerHTML = html;
+		var aP= oCon.getElementsByTagName("p");
+		var n=0;
+		myMusic.addEventListener("timeupdate", function(){
+			//console.log(parseInt(this.currentTime));
+			var curt = parseInt(this.currentTime);
+			if(document.getElementById(curt))
+			{
+				for (var i=0;i<aP.length ;i++){
+					aP[i].style.color="#ccc";
+					aP[i].style.fontSize="24px";
+				}
+				document.getElementById(curt).style.color="black";
+				document.getElementById(curt).style.fontSize="28px";
+				document.getElementById(curt).style.fontWeight="bolder";
+				if(aP[n+3]&& aP[n+3].id== curt){
+					oCon.style.top = -n*40 + "px";
+					n++;
+					
+				}
+			}
+		});
+		myMusic.addEventListener("ended",function(){
+			oCon.style.top = 0;
+			this.currentTime = 0;
+			oPlay.className ="play";
+			mark=true;
+		})
+	</script>
+	</body>
+</html>

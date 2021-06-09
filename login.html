@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			
+			body,html{
+					width: 100%;
+					height: 100%;
+					background: url(img/login.jpg) no-repeat;
+					background-size: cover;
+			}
+		</style>
+
+		<script type="text/javascript" src="js/jquery.min.js"></script>
+
+		<script type="text/javascript">
+			// $(document).ready(function()) 网页中所有DOM文档结构绘制完毕后即刻执行
+			$(function() {
+				//https://www.cnblogs.com/ljwsyt/p/9760266.html
+				var dbSize = 2 * 1024 * 1024;
+				//使用现有的数据库或者新建的数据库创建一个数据库对象
+				db = openDatabase('firstDB', '', '', dbSize);
+				//让我们能够控制一个事务，以及基于这种情况执行提交或者回滚。
+				db.transaction(function(tx) {
+					//执行实际的 SQL 语句   $result=mysqli_query($link,$sql);(php)
+					tx.executeSql("CREATE TABLE IF NOT EXISTS customer(id integer PRIMARY KEY AUTOINCREMENT ,name char(10),address varchar(10))");
+					tx.executeSql("insert into customer values (1,'a123','1234')");
+					
+				});
+				$("button").click(function() {
+					showAll();
+					
+
+				})
+
+				function showAll() {
+					var name = $("#name").val();
+					var address = $("#address").val();
+					
+					$("#showData").html("");
+					db.transaction(function(tx) {
+						//数据动态
+						tx.executeSql("SELECT * FROM customer where name = ? and address = ?", [name,address], function(tx, result) {
+							//$row=mysqli_fetch_assoc($result)(php)
+							if(result.rows.length > 0) {
+								
+								alert("success!!");
+                         	    window.location.href="index.html";
+
+							}
+							else{
+								alert("error!");
+								location.reload();
+							}
+						}, function(e) {
+							$("#message").html("SELECT 语法出错了!" + e.message)
+
+						});
+
+					});
+
+				}
+			})
+		</script>
+	</head>
+
+	<body>
+
+		<center style="position: absolute;top: 40% ;left: 40%">
+		<table>
+			<tr>
+				<td style="font-weight: bold;">singer：</td>
+				<td ><input type="text" id="name"></td>
+			</tr>
+			<tr>
+				<td style="font-weight: bold;">password：</td>
+				<td><input type="text" id="address"></td>
+
+			</tr>
+		</table>
+		<button ><a style="font-weight: bold;">login</a></button>
+		</center>
+
+	</body>
+
+</html>

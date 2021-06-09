@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		
+	<style>
+		body{
+			background: url(img/troye3.jpg);
+			background-size: 100%;
+		}
+		*{
+			margin: 0;
+			padding: 0;
+			
+			
+		}
+		#phone{
+			width: 420px;
+			height: 700px;
+			
+			background-size: cover;
+			margin: 100px auto;
+			}
+		
+		.title{
+			width: 420px;
+			height: 30px;
+			
+			color: deeppink;
+			text-align:  center;
+			font-size: 20px;
+			font-weight: bold; 
+			
+		}
+		.singer{
+			width: 420px;
+			height: 20px;
+			color: deeppink;
+			text-align:  center;
+		}
+		.play{
+			width: 190px;
+			height:190px;
+			background: url(img/troye.jpg);
+			background-size: contain;
+			border-radius:50%; 
+			
+			margin: 20px auto;
+		}
+		.rotate{
+			animation: rot 10s linear infinite;
+		}
+		@keyframes rot{
+			from{
+				transform: rotate(0deg) ;
+			}
+			to{
+				transform: rotate(360deg);
+			}
+		}
+		.lrc{
+			width: 420px;
+			height: 540px;
+			margin: auto;
+			color: #ccc;
+			font-size: 24px;
+			line-height: 42px;
+			text-align: center;
+			overflow: hidden;
+		}
+		#content{
+			position: relative;
+			top:0;
+		}
+	
+	</style>	
+	</head>
+	
+	
+	<body >
+		<div id="phone">
+			<div class="title">FOOLS <a href="index.html" style="color: deeppink;">HOME</a></div>
+			<div class="singer">Troye sivan</div>
+			<
+			<div class="play rotate" id="play"></div>
+			<div class="lrc">
+				<div id="content"></div>
+			</div>
+		</div>
+		<audio src="music/Troye Sivan - FOOLS.MP3" id="mymusic" ></audio>
+		<textarea id="text" style="display:none">
+			[00:10.74]I am tired of this place
+
+			[00:13.44]I hope people change
+			
+			[00:16.00]I need time to replace what
+			
+			[00:18.97]I gave away
+			
+			[00:21.37]And my hopes they are high
+			
+			[00:24.12]I must keep them small
+			
+			[00:26.72]Though I try to resist
+			
+			[00:29.37]I still want it all
+			
+			[00:32.02]I see swimming pools and
+			
+			[00:34.27]Living rooms and airplanes
+			
+			[00:37.56]I see a little house on the hill
+			
+			[00:40.76]And children's names
+			
+			[00:43.01]I see quiet nights poured over ice
+			
+			[00:46.11]And tanqueray
+			
+			[00:48.56]But everything is shattering and it's my mistake
+			
+			[00:53.26]Only fools fall for you only fools
+			
+			[00:58.49]Only fools do what
+			
+			[01:00.38]I do only fools fall
+			
+			[01:04.14]Only fools fall for you only fools
+			
+			[01:09.29]Only fools do what
+			
+			[01:10.99]I do only fools fall
+			
+			[01:26.19]Oh our lives don't collide
+			
+			[01:28.89]I'm aware of this
+			
+			[01:31.00]The differences and impulses and your obsession with
+			
+			[01:36.90]The little things you like stick and
+			
+			[01:39.85]I like aerosol
+			
+			[01:42.05]Don't give a fuck not giving up
+			
+			[01:44.75]I still want it all
+			
+			[01:46.95]Only fools fall for you only fools
+			
+			[01:52.43]Only fools do
+			
+			[01:53.98]What I do only fools fall
+			
+			[01:57.99]Only fools fall for you only fools
+			
+			[02:03.14]Only fools do
+			
+			[02:04.64]What I do only fools fall
+			
+			[02:09.64]I see swimming pools and living rooms and
+			
+			[02:12.74]Airplanes
+			
+			[02:14.64]I see a little house on the hill
+			
+			[02:17.79]And children's names
+			
+			[02:20.04]I see quiet nights part over rice and
+			
+			[02:23.29]Tanqueray
+			
+			[02:25.44]But everything is shattering and it's my mistake
+			
+			[02:30.29]Only fools fall for you
+			
+			[02:32.94]Only fools fall
+			
+			[02:35.52]Only fools do
+			
+			[02:37.07]What I do only fools fall
+			
+			[02:40.83]Only fools fall for you
+			
+			[02:43.58]Only fools fall
+			
+			[02:46.23]Only fools do
+			
+			[02:47.73]What I do only fools fall
+			
+			[02:51.69]Only fools fall for you only fools
+			
+			[02:57.14]Only fools do what I do only fools
+			
+			[03:02.50]Only fools fall for you only fools
+			
+			[03:07.90]Only fools do
+			
+			[03:09.30]What I do only fools fall
+			
+			[03:13.55]Only fools
+			
+			[03:16.05]Only fools
+			
+			[03:18.75]Only fools
+			
+			[03:21.45]Only fools
+			
+			[03:26.99]Only fools
+			
+			[03:32.44]Only fools
+
+		</textarea>
+		<script type="text/javascript">
+		var oPlay = document.getElementById("play");
+		var myMusic = document.getElementById("mymusic");
+		var mark = true;
+		oPlay.onclick = function(){
+			if (mark){
+				myMusic.play();
+				mark = false;
+				this.className = "play rotate";
+			}else{
+				myMusic.pause();
+				mark = true;
+				this.className = "play";
+			}
+		}
+		var html = '';
+		var oCon = document.getElementById("content");
+		var text = document.getElementById("text").value;
+		var arr = text.split("[");
+		for (var i=0;i<arr.length ;i++)
+		{
+			
+			var lrc =arr[i].split("]");
+			var times =lrc[0].split(".");
+			var time =times[0].split(":");
+			var cut = time[0]*60+ time[1]*1;
+			if (lrc[1])
+			{
+				html +="<p id="+cut+">"+lrc[1]+"</p>";
+			}
+		}
+		oCon.innerHTML = html;
+		var aP= oCon.getElementsByTagName("p");
+		var n=0;
+		myMusic.addEventListener("timeupdate", function(){
+			
+			var curt = parseInt(this.currentTime);
+			if(document.getElementById(curt))
+			{
+				for (var i=0;i<aP.length ;i++){
+					aP[i].style.color="#ccc";
+					aP[i].style.fontSize="24px";
+				}
+				document.getElementById(curt).style.color="deeppink";
+				document.getElementById(curt).style.fontSize="28px";
+				if(aP[n+3]&& aP[n+3].id== curt){
+					oCon.style.top = -n*40 + "px";
+					n++;
+					
+				}
+			}
+		});
+		myMusic.addEventListener("ended",function(){
+			oCon.style.top = 0;
+			this.currentTime = 0;
+			oPlay.className ="play";
+			mark=true;
+		})
+	</script>
+	</body>
+</html>

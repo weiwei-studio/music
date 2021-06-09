@@ -122,51 +122,77 @@
 		[03:49.00]但却在暗示结局甚迷离
 		</textarea>
 		<script type="text/javascript">
+			//获取logo
 		var oPlay = document.getElementById("play");
+			//获取播放音乐audio标签
 		var myMusic = document.getElementById("mymusic");
 		var mark = true;
+			//给logo添加点击事件实现logo旋转
 		oPlay.onclick = function(){
+			//定义一个mark 布尔值是为了循环多次点击效果
 			if (mark){
+				//开始或继续
 				myMusic.play();
 				mark = false;
+			       //改变class的名字使其样式发生变化
 				this.className = "play rotate";
 			}else{
+				//暂停
 				myMusic.pause();
 				mark = true;
 				this.className = "play";
 			}
 		}
+	//定义一个空字符串
 		var html = '';
+		//获取歌词区域标签
 		var oCon = document.getElementById("content");
+			//获取textarea内的值，也就是textarea内容
 		var text = document.getElementById("text").value;
+			// console.log(text);
+			//拆分text内容 00:26.00]呆坐半晚  咖啡早渗着冰冷
 		var arr = text.split("[");
+			// console.log(arr);
 		for (var i=0;i<arr.length ;i++)
 		{
-			
+			//拆分成带时间的歌词数组 [ 00:26.00,  呆坐半晚  咖啡早渗着冰冷 ]
 			var lrc =arr[i].split("]");
+			//获取到完整时间数组   [ 00:26, 00 ]
 			var times =lrc[0].split(".");
+			//获取到分和秒的数组  [ 00 , 26 ]
 			var time =times[0].split(":");
+			//计算总秒s  分钟乘以60加上秒乘以1，为了变成数字类型
 			var cut = time[0]*60+ time[1]*1;
+			//判断lrc数组第二个是否有值，因为第一个是空的
 			if (lrc[1])
 			{
+				//给页面添加p元素，并且把cut值赋给id，为了便于下面监听事件执行，p的内容就是不带时间的歌词展示在页面上：呆坐半晚  咖啡早渗着冰冷
 				html +="<p id="+cut+">"+lrc[1]+"</p>";
 			}
 		}
+			//渲染到歌词区域
 		oCon.innerHTML = html;
+			//获取刚刚渲染的p元素集合
 		var aP= oCon.getElementsByTagName("p");
 		var n=0;
+			//创建audio音乐播放器的监听事件，该事件是播放事件，需要输入两个参数，第一个是描述信息：时间更新，第二个是时间触发的执行函数
 		myMusic.addEventListener("timeupdate", function(){
 			// console.log(parseInt(this.currentTime));
+			//currentTime 属性设置或返回音频/视频播放的当前位置（以秒计）
 			var curt = parseInt(this.currentTime);
 			if(document.getElementById(curt))
 			{
+				//每次判断进来时都先遍历每个p标签设置普通样式
 				for (var i=0;i<aP.length ;i++){
 					aP[i].style.color="#ccc";
 					aP[i].style.fontSize="24px";
 				}
+				//再次获取当前id值为音频播放的时间位置s，并设置样式让前端页面发现歌词播放位置
 				document.getElementById(curt).style.color="red";
 				document.getElementById(curt).style.fontSize="28px";
 				document.getElementById(curt).style.fontWeight="bolder";
+				//为了避免轮播歌词结束之后到达底部不美观，将其轮播的歌词定位在固定的位置，现位置是在第四行开始做停留，原理是让整个content往上走，达到第四行开始，top值为0，之后增加一行top值就减去40px，相当于向上走40px
+				
 				if(aP[n+3]&& aP[n+3].id== curt){
 					oCon.style.top = -n*40 + "px";
 					n++;
@@ -174,6 +200,7 @@
 				}
 			}
 		});
+			//最后音频结束后，再写一个结束的监听事件，执行下面函数，让所有内容恢复到刚开始的位置
 		myMusic.addEventListener("ended",function(){
 			oCon.style.top = 0;
 			this.currentTime = 0;
